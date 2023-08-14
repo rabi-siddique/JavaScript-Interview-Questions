@@ -36,7 +36,7 @@ In our case `[]` is an empty array, which is a truthy value in JavaScript. Since
 ```
 
 Now let's move ahead and understand the `==` operator. Whenever 2 values are compared using `==` operator, JavaScript performs the **Abstract Equality Comparison Algorithm**. The algorithm has the following steps:
-<INSERT IMAGE>
+![Abstract Equality Comparison Algorithm](/images/abstractEquality.png "Abstract Equality Comparison Algorithm")
 
 As you can see this algorithm takes into account the types of the compared values and performs necessary conversions. 
 For our case, let's denote `x` as `[]` and `y` as `![]`. We inspected the types of `x` and `y` and found `x` as an object and `y` as boolean. Since `y` is a boolean and `x` is an object, condition 7 from the abstract equality comparison algorithm is applied:
