@@ -25,7 +25,7 @@ typeof(![]) // "boolean"
 ```
 
 For `[]` it is an object, which is understandable. As everything in JavaScript is an object including arrays and functions. But how does the operand `![]` has a type of boolean? Let's try to understand this. When you use `!` with a primitive value, the following conversions happen:
-- **Falsy Values**: If the original value is a falsy value (such as false, 0, null, undefined, NaN, or an empty string ''), applying `!` will convert it to `true`.
+- **Falsy Values**: If the original value is a falsy value (such as `false`, `0`, `null`, `undefined`, `NaN`, or an empty string `''`), applying `!` will convert it to `true`.
 - **Truthy Values**: If the original value is a truthy value (any value that is not falsy), applying `!` will convert it to `false`.
 
 In our case `[]` is an empty array, which is a truthy value in JavaScript. Since `[]` is truthy, `![]` becomes false. So our expression becomes:
