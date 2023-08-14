@@ -52,7 +52,7 @@ Meaning if one of the types is a boolean, we need to convert it into a number be
 Now we have the comparison `[] == 0` and this time condition 8 comes into play:
 > If Type(x) is either String or Number and Type(y) is Object, return the result of the comparison x == ToPrimitive(y).
 
-Based on this condition, if one of the operands is an object, we need to convert it into a primitive value. This is where the ToPrimitive algorithm comes into the picture. We need to convert `x` which is `[]` to a primitive value. In this case, the **ToPrimitive(x)** is converting the array to a string using `toString()`:
+Based on this condition, if one of the operands is an object, we need to convert it into a primitive value. This is where the **ToPrimitive** algorithm comes into the picture. We need to convert `x` which is [] to a primitive value. Arrays are objects in JavaScript. And we saw earlier that when converting objects to primitives, `valueOf` and `toString` methods come into play. In this case, `valueOf` returns the array itself which is not a valid primitive value. As a result, we move to `toString` for an output. Applying the `toString` method to an empty array results in obtaining an empty string, which is a primitive:
 ```js
 [] == 0
 [].toString() == 0
