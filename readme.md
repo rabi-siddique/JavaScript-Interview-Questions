@@ -12,8 +12,46 @@ Putting it all together:
 ```bash
 '11' - 1 = 11 - 1 = 10
 ```
+## 2-Object Coercion
+```js
+const obj = {
+  valueOf: () => 42,
+  toString: () => 27
+};
+console.log(obj + '');
+```
 
-## 2-The Double Equals Operator
+One interesting aspect is how JavaScript handles the conversion of objects into primitive values, such as strings, numbers, or booleans. This is an interesting question which tests whether you know how coercion works with Objects.
+
+This conversion is crucial when working with objects in scenarios like string concatenation or arithmetic operations. To achieve this, JavaScript relies on two special methods: `valueOf` and `toString`.
+
+### valueOf and toString
+
+The `valueOf` method is a fundamental part of JavaScript's object conversion mechanism. When an object is used in a context that requires a primitive value, JavaScript first looks for the `valueOf` method within the object. In cases where the `valueOf` method is either absent or doesn't return an appropriate primitive value, JavaScript falls back to the `toString` method. This method is responsible for providing a string representation of the object.
+
+### Understanding the Output
+Returning to our original code snippet:
+```js
+const obj = {
+  valueOf: () => 42,
+  toString: () => 27
+};
+console.log(obj + '');
+```
+When we run this code, the object `obj` is converted to a primitive value. In this case, the `valueOf` method returns `42`, which is then implicitly converted to a string due to the concatenation with an empty string. Consequently, the output of the code will be:
+```bash
+42
+```
+However, in cases where the valueOf method is either absent or doesn't return an appropriate primitive value, JavaScript falls back to the `toString` method. Let's modify our previous example:
+```js
+const obj = {
+  toString: () => 27
+};
+console.log(obj + '');
+```
+Here, we've removed the `valueOf` method, leaving only the `toString` method, which returns the number `27`. In this scenario, JavaScript will resort to the `toString` method for object conversion.
+
+## 3-The Double Equals Operator
 ```js
 console.log([] == ![]);
 ```
