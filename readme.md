@@ -126,13 +126,13 @@ console.log(a);
 ```
 At first glance, it might seem like this code should produce an object a with two distinct key-value pairs. However, the outcome is quite different due to JavaScript's handling of object keys.
 JavaScript employs the default `toString()` method to convert object keys into strings. But why? In JavaScript, object keys are always strings, or they are automatically converted to strings via implicit coercion. When you use any value other than a string (e.g., a number, object, or symbol) as a key in an object, JavaScript will internally convert that value to its string representation before using it as a key.
-Consequently, when we use objects `b` and `c` as keys in the object `a`, both are transformed into the same string representation: `[object Object]`. This behavior has a significant implication: the second assignment will overwrite the first one, resulting in only one entry remaining in object `a`.
+Consequently, when we use objects `b` and `c` as keys in the object `a`, both are transformed into the same string representation: `[object Object]`. Due to this behavior, the second assignment, `a[c]` will overwrite the first one.
 Let's break down the code step by step:
 1. `let a = {};`: Initializes an empty object `a`.
 2. `let b = { key: 'test' };`: Creates an object `b` with a property `key` having the value `'test'`.
 3. `let c = { key: 'test' };`: Defines another object `c` with the same structure as `b`.
 4. `a[b] = '123';`: Sets the value `'123'` to the property with key `[object Object]` in object `a`.
-4. `a[c] = '456';`: Updates the value to `'456'` for the same property with key `[object Object]` in object `a`, effectively replacing the previous value.
+5. `a[c] = '456';`: Updates the value to `'456'` for the same property with key `[object Object]` in object `a`, effectively replacing the previous value.
 
 Both assignments utilize the identical key string `[object Object]`. As a result, the second assignment overwrites the value set by the first assignment. When we log the object `a`, we observe the following output:
 ```bash
