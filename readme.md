@@ -137,3 +137,76 @@ Both assignments utilize the identical key string `[object Object]`. As a result
 ```bash
 { '[object Object]': '456' }
 ```
+
+## 5-Closures
+This is one of the most famous interview questions asked related to closures:
+
+```js
+const arr = [10, 12, 15, 21];
+for (var i = 0; i < arr.length; i++) {
+  setTimeout(function() {
+    console.log('Index: ' + i + ', element: ' + arr[i]);
+  }, 3000);
+}
+```
+
+If you know the output, then well and good. So let's try to understand this snippet. At the face value, it looks that this snippet would give us the output of:
+
+```bash
+Index: 0, element: 10
+Index: 1, element: 12
+Index: 2, element: 15
+Index: 3, element: 21
+```
+But this is not the case over here. Due to the concept of closures and how JavaScript handles variable scope, the actual output will be different. When the `setTimeout` callbacks are executed after the delay of 3000 milliseconds, they will all reference the same variable `i`, which will have a final value of `4` after the loop has completed. As a result, the output of the code will be:
+
+```bash
+Index: 4, element: undefined
+Index: 4, element: undefined
+Index: 4, element: undefined
+Index: 4, element: undefined
+```
+
+This behavior occurs because the `var` keyword does not have block scope, and the `setTimeout` callbacks capture the reference to the same `i` variable. When the callbacks execute, they all see the final value of `i`, which is `4`, and try to access `arr[4]`, which is `undefined`.
+
+To achieve the desired output, you can use the `let` keyword to create a new scope for each iteration of the loop, ensuring that each callback captures the correct value of `i`:
+
+```js
+const arr = [10, 12, 15, 21];
+for (let i = 0; i < arr.length; i++) {
+  setTimeout(function() {
+    console.log('Index: ' + i + ', element: ' + arr[i]);
+  }, 3000);
+}
+```
+
+With this modification, you will get the expected output:
+
+```bash
+Index: 0, element: 10
+Index: 1, element: 12
+Index: 2, element: 15
+Index: 3, element: 21
+```
+
+Using `let` creates a new binding for `i` in each iteration, ensuring that each callback refers to the correct value.Often, developers have become familiar with the solution involving the `let` keyword. However, interviews can sometimes take a step further and challenge you to solve the problem without using `let`. In such cases, an alternative approach involves creating a closure by immediately invoking a function(IIFE) inside the loop. This way, each function call has its own copy of `i`. Here's how you can do it:
+
+```js
+const arr = [10, 12, 15, 21];
+for (var i = 0; i < arr.length; i++) {
+  (function(index) {
+    setTimeout(function() {
+      console.log('Index: ' + index + ', element: ' + arr[index]);
+    }, 3000);
+  })(i);
+}
+```
+
+In this code, the immediately invoked function `(function(index) { ... })(i);` creates a new scope for each iteration, capturing the current value of `i` and passing it as the `index` parameter. This ensures that each callback function gets its own separate `index` value, preventing the closure-related issue and giving you the expected output:
+
+```bash
+Index: 0, element: 10
+Index: 1, element: 12
+Index: 2, element: 15
+Index: 3, element: 21
+```
