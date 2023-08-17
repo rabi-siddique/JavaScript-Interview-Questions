@@ -210,3 +210,46 @@ Index: 1, element: 12
 Index: 2, element: 15
 Index: 3, element: 21
 ```
+## 6-Duplicating Array Elements
+
+Consider the following JavaScript code and try to find any issues in this code:
+
+```js
+function duplicate(array) {
+  for (var i = 0; i < array.length; i++) {
+    array.push(array[i]);
+  }
+  return array;
+}
+
+const arr = [1, 2, 3];
+const newArr = duplicate(arr);
+console.log(newArr);
+```
+
+In this code snippet we are required to create a new array containing the duplicated elements of the input array. Upon initial inspection, the code appears to aim for the creation of a new array, `newArr`, by duplicating each element from the original array `arr`. However, a critical issue arises within the `duplicate` function itself.
+
+The `duplicate` function uses a loop to go through each item in the given array. But inside the loop, it tries to add a copy of each item at the end into the same array, using the `push()` method. This makes the array longer each time, creating a problem where the loop never stops. The part that checks if the loop should continue `(i < array.length)` always stays true because the array keeps getting bigger. This makes the loop go on forever, causing the program to get stuck.
+
+To address the problem of the infinite loop caused by the growing array length, you can store the initial length of the array in a variable before entering the loop. Then, you can use this initial length as the limit for the loop iteration. This way, the loop will only run for the original elements in the array and won't be affected by the array's growth due to duplicates being added. Here is the modified version of the code:
+
+```js
+function duplicate(array) {
+  var initialLength = array.length; // Store the initial length
+  for (var i = 0; i < initialLength; i++) {
+    array.push(array[i]); // Push a duplicate of each element
+  }
+  return array;
+}
+
+const arr = [1, 2, 3];
+const newArr = duplicate(arr);
+console.log(newArr);
+```
+
+By using the `initialLength` variable as the loop limit, it ensures that the loop runs only for the original elements and doesn't get caught in an infinite loop due to the array's expansion.
+The output will show the duplicated elements at the end of the array, and the loop won't result in an infinite loop:
+
+```bash
+[1, 2, 3, 1, 2, 3]
+```
