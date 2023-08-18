@@ -272,21 +272,23 @@ var a = 5;
 bar();
 ```
 
-The code defines 2 functions foo() and bar() and a variable a with a value of 5. All these declarations happen in the global scope. Inside the bar() function, a variable a is declared and assigned the value 3. So when thebar() function is called, what value of a do you think it will print? 
-When the JavaScript engine executes this code, the global variable a is declared and assigned the value 5. Then the bar() function is called. Inside the bar() function, a local variable a is declared and assigned the value 3. This local variable a is distinct from the global variable a. After that the foo() function is called from within the bar() function.
+The code defines 2 functions `foo()` and `bar()` and a variable `a` with a value of `5`. All these declarations happen in the global scope. Inside the `bar()` function, a variable `a` is declared and assigned the value `3`. So when the `bar()` function is called, what value of `a` do you think it will print? 
 
-Inside the foo() function, the console.log(a) statement tries to log the value of a. Since there is no local variable a defined within the foo() function's scope, JavaScript looks up the scope chain to find the nearest variable named a. The scope chain refers to all the different scopes that a function has access to when it's trying to find and use variables.
+When the JavaScript engine executes this code, the global variable `a` is declared and assigned the value `5`. Then the `bar()` function is called. Inside the `bar()` function, a local variable `a` is declared and assigned the value `3`. This local variable `a` is distinct from the global variable `a`. After that the `foo()` function is called from within the `bar()` function.
 
-Now, let's address the question of where JavaScript will search for the variable a. Will it look within the scope of the bar function, or will it explore the global scope? As it turns out, JavaScript will search in the global scope, and this behavior is driven by a concept called lexical scope.
-Lexical scope essentially refers to the scope of a function or variable at the time it was written in the code. When we defined the foo function, it was given access to both its own local scope and the broader global scope. This characteristic remains consistent no matter where we call the foo function-whether it's inside the bar function, or if we export it to another module and run it there. Lexical scope is not determined where we call the function.
+Inside the `foo()` function, the `console.log(a)` statement tries to log the value of `a`. Since there is no local variable `a` defined within the `foo()` function's scope, JavaScript looks up the scope chain to find the nearest variable named `a`. The scope chain refers to all the different scopes that a function has access to when it's trying to find and use variables.
+
+Now, let's address the question of where JavaScript will search for the variable `a`. Will it look within the scope of the `bar` function, or will it explore the global scope? As it turns out, JavaScript will search in the global scope, and this behavior is driven by a concept called **lexical scope**.
+
+Lexical scope essentially refers to the scope of a function or variable at the time it was written in the code. When we defined the `foo` function, it was given access to both its own local scope and the broader global scope. This characteristic remains consistent no matter where we call the `foo` function-whether it's inside the bar function, or if we export it to another module and run it there. Lexical scope is not determined where we call the function.
  
-The upshot of this is that the output will always be the same: the value of a found in the global scope, which in this case is:
+The upshot of this is that the output will always be the same: the value of `a` found in the global scope, which in this case is:
 
 ```bash
 5
 ```
 
-However, if we had defined the foo function within the bar function, a different scenario emerges:
+However, if we had defined the `foo` function within the bar function, a different scenario emerges:
 
 ```js
 function bar() {
@@ -304,7 +306,8 @@ bar();
 ```
 
 In this situation, the lexical scope of foo would encompass three distinct scopes: its own local scope, the scope of the bar function, and the global scope. Lexical scope is determined by where you place your code in the source code during compile time.
-When this code runs, foo is situated within the bar function. This arrangement alters the scope dynamics. Now, when foo attempts to access the variable a, it will first search within its own local scope. Since it doesn't find a there, it will broaden its search to the scope of the bar function. Lo and behold, a exists there with the value 3. As a result, console statement would print:
+
+When this code runs, `foo` is situated within the `bar` function. This arrangement alters the scope dynamics. Now, when `foo` attempts to access the variable `a`, it will first search within its own local scope. Since it doesn't find `a` there, it will broaden its search to the scope of the `bar` function. Lo and behold, `a` exists there with the value `3`. As a result, console statement would print:
 
 ```bash
 3
