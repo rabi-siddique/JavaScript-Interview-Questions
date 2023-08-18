@@ -255,7 +255,7 @@ The output will show the duplicated elements at the end of the array, and the lo
 ```
 
 ## 4-Scopes
-When writing JavaScript code, it's important to understand the concept of scope. Scope refers to the accessibility or visibility of variables within different parts of your code. Before we proceed with the example, if you're not familiar with hoisting and how JavaScript code is executed, you can learn about it from this link. This will help you understand how JavaScript code works in more detail.
+When writing JavaScript code, it's important to understand the concept of scope. Scope refers to the accessibility or visibility of variables within different parts of your code. Before we proceed with the example, if you're not familiar with hoisting and how JavaScript code is executed, you can learn about it from this [link](https://blog.devgenius.io/hoisting-in-javascript-c90f6d03d2df). This will help you understand how JavaScript code works in more detail.
 Let's take a closer look at the code snippet:
 
 ```js
