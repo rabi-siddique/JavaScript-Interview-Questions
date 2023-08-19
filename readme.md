@@ -25,11 +25,8 @@ One interesting aspect is how JavaScript handles the conversion of objects into 
 
 This conversion is crucial when working with objects in scenarios like string concatenation or arithmetic operations. To achieve this, JavaScript relies on two special methods: `valueOf` and `toString`.
 
-### valueOf and toString
-
 The `valueOf` method is a fundamental part of JavaScript's object conversion mechanism. When an object is used in a context that requires a primitive value, JavaScript first looks for the `valueOf` method within the object. In cases where the `valueOf` method is either absent or doesn't return an appropriate primitive value, JavaScript falls back to the `toString` method. This method is responsible for providing a string representation of the object.
 
-### Understanding the Output
 Returning to our original code snippet:
 ```js
 const obj = {
@@ -254,7 +251,7 @@ The output will show the duplicated elements at the end of the array, and the lo
 [1, 2, 3, 1, 2, 3]
 ```
 
-## 4-Scopes
+## 7-Scopes
 When writing JavaScript code, it's important to understand the concept of scope. Scope refers to the accessibility or visibility of variables within different parts of your code. Before we proceed with the example, if you're not familiar with hoisting and how JavaScript code is executed, you can learn about it from this [link](https://blog.devgenius.io/hoisting-in-javascript-c90f6d03d2df). This will help you understand how JavaScript code works in more detail.
 Let's take a closer look at the code snippet:
 
