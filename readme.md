@@ -302,7 +302,7 @@ In this situation, the lexical scope of foo would encompass three distinct scope
 
 When this code runs, `foo` is situated within the `bar` function. This arrangement alters the scope dynamics. Now, when `foo` attempts to access the variable `a`, it will first search within its own local scope. Since it doesn't find `a` there, it will broaden its search to the scope of the `bar` function. Lo and behold, `a` exists there with the value `3`. As a result, console statement would print `3`.
 
-## 8-Difference between prototype and __proto__
+## 8-Difference between prototype and *__proto__*
 The `prototype` property is an attribute associated with constructor functions in JavaScript. Constructor functions are used to create objects based on a blueprint. When you define a constructor function, you can also attach properties and methods to its `prototype` property. These properties and methods then become accessible to all instances of objects created from that constructor. Essentially, the `prototype` property serves as a **common repository** for methods and properties that are shared among instances.
 Consider the following code snippet:
 
