@@ -279,11 +279,7 @@ Now, let's address the question of where JavaScript will search for the variable
 
 Lexical scope essentially refers to the scope of a function or variable at the time it was written in the code. When we defined the `foo` function, it was given access to both its own local scope and the broader global scope. This characteristic remains consistent no matter where we call the `foo` function-whether it's inside the bar function, or if we export it to another module and run it there. Lexical scope is not determined where we call the function.
  
-The upshot of this is that the output will always be the same: the value of `a` found in the global scope, which in this case is:
-
-```bash
-5
-```
+The upshot of this is that the output will always be the same: the value of `a` found in the global scope, which in this case is `5`.
 
 However, if we had defined the `foo` function within the bar function, a different scenario emerges:
 
@@ -304,8 +300,4 @@ bar();
 
 In this situation, the lexical scope of foo would encompass three distinct scopes: its own local scope, the scope of the bar function, and the global scope. Lexical scope is determined by where you place your code in the source code during compile time.
 
-When this code runs, `foo` is situated within the `bar` function. This arrangement alters the scope dynamics. Now, when `foo` attempts to access the variable `a`, it will first search within its own local scope. Since it doesn't find `a` there, it will broaden its search to the scope of the `bar` function. Lo and behold, `a` exists there with the value `3`. As a result, console statement would print:
-
-```bash
-3
-```
+When this code runs, `foo` is situated within the `bar` function. This arrangement alters the scope dynamics. Now, when `foo` attempts to access the variable `a`, it will first search within its own local scope. Since it doesn't find `a` there, it will broaden its search to the scope of the `bar` function. Lo and behold, `a` exists there with the value `3`. As a result, console statement would print `3`.
